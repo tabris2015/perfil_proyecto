@@ -162,8 +162,8 @@ Entre las técnicas empleadas para lograr la tarea de detección y mantención d
 se pueden encontrar diversos enfoques entre los cuales podemos destacar los siguientes 2:
 
 \begin{itemize}
-    \item Fusión de sensores e ingeniería de "características"
-    \item Aprendizaje "Fin a Fin" 
+    \item Fusión de sensores e ingeniería de ``características''
+    \item Aprendizaje ``Fin a Fin''
 \end{itemize}
 %*******************JUSTIFICACION*******************
 
@@ -229,8 +229,32 @@ recursos y tiempo para poder lograr un sistema funcional.
 % PLANTEAMIENTO DEL PROBLEMA: Tiene que ver con enfocar la solucion de los aspectos problematicos tratados, 
 % desde su situacion inicial hasta su situacion final deseada.
 
-En la tarea de conducción autónoma, se debe considerar varios aspectos concernientes tanto al diseño como a la 
-implementación de sistemas de conducción autónoma. 
+Considerando a la tarea de conducción autónoma como un sistema de procesamiento de datos, se debe tener en 
+cuenta varios aspectos concernientes tanto al diseño como a la implementación de dichos tipos de sistemas. Una 
+de las principales características es que tradicionalmente el flujo de la información pasa por varias etapas.
+
+En el área de visión por computadora para tareas de conducción autónoma, normalmente se sigue el siguiente flujo:
+
+\begin{enumerate}
+    \item \textbf{Extracción de características.} Esta etapa incluye el preprocesamiento y transformación de la imagen 
+    en un conjunto de características de distinta índole. Estas características se suelen llamar también descriptores 
+    y sirven para describir los aspectos más relevantes de la imagen para la tarea final, por ejemplo, la detección de bordes. 
+    La extracción de características también se usa para reducir la dimensionalidad inicial de la imagen a una más tratable y 
+    amigable con el poder de procesamiento disponible. Las características o descriptores a usarse se definen manualmente por 
+    medio de conocimiento experto y se afinan de la misma manera.
+
+    \item \textbf{Algoritmo predictor.} Esta etapa incluye típicamente un algoritmo de aprendizaje previamente entrenado con un conjunto 
+    de datos adecuado, permite realizar distintas tareas de alto nivel sobre los descriptores obtenidos de la imagen. Estas 
+    descripciones de alto nivel incluyen normalmente tareas de detección, clasificación o regresión.
+
+    \item \textbf{Adecuación de los datos de salida.} La información extraída de la anterior etapa debe procesarse para poder ser traducida 
+    a comandos de control que actuen directamente con las etapas de bajo nivel del vehículo, es decir la etapa de actuación y potencia.
+\end{enumerate}
+
+
+  - complejidad
+  - lentitud en la implementacion
+  - 
 %------------------
 \section{Objetivos}
 \subsection{Objetivo General}
