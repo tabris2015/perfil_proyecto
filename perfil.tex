@@ -18,6 +18,7 @@
 \usepackage{breakcites}
 \usepackage{enumitem}
 
+\usepackage{hyperref}
 
 \begin{document}
 \marginsize{2.5cm}{2cm}{2cm}{2cm} 
@@ -51,7 +52,7 @@
 \vspace*{0.4in}
 
 \begin{normalsize}
-\textbf{`` Detección de carril usando redes neuronales convolucionales y aprendizaje profundo''} \\
+\textbf{`` Aprendizaje fin a fin para la conducción autónoma de vehículos domésticos usando visión artificial y redes neuronales convolucionales''} \\
 \end{normalsize}
 
 
@@ -68,7 +69,7 @@
 \end{large}
 
 \begin{large}
-\hspace{0.44in} \textbf{D.A.M.:} ALFONSO JURADO VISCARRA\\
+\hspace{0.44in} \textbf{D.A.M.:} --\\
 \end{large}
 
 \vspace*{0.2in}
@@ -96,7 +97,7 @@ LA PAZ, AGOSTO 2018\\
 
 Los vehículos autónomos han pasadoe de ser un tema de ciencia ficción a convertirse una realidad cada vez más 
 cercana. Si bien existe un recorrido muy largo para llegar a implementar sistemas completamente autónomos en las calles, 
-lose recientes avances en la tecnología junto con el interés económico de grandes empresas y corporaciones en el mundo 
+los recientes avances en la tecnología junto con el interés económico de grandes empresas y corporaciones en el mundo 
 ha hecho posible incluir diversos niveles de autonomía a vehículos con fines de uso doméstico e industrial con éxito.
 
 Una de las áreas que más se ha nutrido de los recientes avances es el área de la visión artificial o visión por computador; 
@@ -105,7 +106,8 @@ Este crecimiento, en gran parte, se ha debido al desarrollo y optimización de l
 constituido en una herramienta con muchas potencialidades y aplicaciones por la forma en la que se procesa la información 
 y su capacidad para generalizar tareas complejas en base a una gran cantidad de datos de entrenamiento. En específico, 
 las redes neuronales convolucionales han podido revivir al campo de la visión artificial gracias a la forma eficiente 
-en la que procesa imágenes o matricies multidimensionales y la capacidad de crear representaciones internas a partir de imágenes.
+en la que procesa imágenes o matricies multidimensionales y la capacidad de crear representaciones internas a partir 
+de filtros de convolución.
 
 La visión artificial juega un papel muy importante en el desarrollo de vehículos autónomos por cuanto permite 
 procesar imágenes digitales provenientes de cámaras instaladas en los mismos vehículos y extraer información 
@@ -113,58 +115,95 @@ valiosa para la navegación y la conducción, como ser la detección de carril, 
 etc. Esta utilidad hace posible diversas oportunidades de investigación y desarrollo de algoritmos y sistemas de visión 
 artificial orientados a conducción autónoma.
 
-El presente proyecto se centra en el desarrollo de un sistema de detección de carril basado en visión artificial para 
+El presente proyecto se centra en el desarrollo de un sistema de conducción autónoma basado en visión artificial para 
 la generación de comandos de control para la conducción autónoma de un vehículo doméstico con un modelo de locomoción 
-de Ackerman. Se intenta desarrollar un sistema “fin a fin” que consta de un modelo que genera comandos de control a 
-partir de un estímulo visual solamente.
+de Ackerman. Se intenta desarrollar un sistema de aprendizaje “fin a fin” que consta de un modelo de predicción 
+que genera comandos de control a partir de un estímulo visual proveniente de una cámara monocular.
 
+% TODO: referencias 
 \section{Antecedentes}
 
-En Bolivia existe más de un millón de automotores y la gran mayoría son de uso privado. El parque automotor va 
-en crecimiento y junto con él temas de impacto ambiental que van en desmedro de la calidad de vida de la población 
-como por ejemplo: polución del aire, contaminación sonora o mal uso de espacios públicos. En este entendido, el 
-desarrollo de vehículos autónomos surge como una oportunidad para solucionar algunos de estos problemas y mejorar 
-la calidad de vida de la población.
-
 El primer intento de desarrollo de un sistema de conducción autónomo “fin a fin” fue llevado a cabo por la Agencia 
-de Proyectos de Investigación Avanzada en Defensa (DARPA) con un proyecto conocido como el Vehículo Autónomo DARPA o 
-DAVE en el cual un vehículo radio controlado a escala tenía la tarea de conducir a través de un entorno escabroso. 
-El vehículo DAVE fue entrenado a partir de horas de conducción humana en entornos similares pero no idénticos. Los datos 
-de entrenamiento incluyeron imágenes de dos cámaras de video y comandos de control generados por un operador humano. 
+de Proyectos de Investigación Avanzada en Defensa de los Estados Unidos (DARPA) con un proyecto conocido 
+como el Vehículo Autónomo de DARPA o DAVE \cite{lecun2004dave} en el cual un vehículo radio controlado a escala tenía la 
+tarea de conducir a través de un entorno escabroso. El vehículo DAVE fue entrenado a partir de cientos de
+horas de conducción humana en entornos similares pero no idénticos. Los datos de entrenamiento 
+incluyeron imágenes de dos cámaras de video y comandos de control generados por un operador humano. 
 
-Luego de esto, el primer hito en el desarrollo de un sistema completamente autónomo vino con la organización del DARPA 
-“Grand Challenge” en el cual equipos de varias universidades, institutos de investigación y empresas tuvieron que 
-enfrentar el difícil reto de desarrollar un sistema capaz de controlar un vehículo doméstico para que se maneje solo a 
-través de una carretera ripiada en medio del desierto de Arizona. Dentro las 2 versiones del Darpa Grand Challenge 
-destacaron los proyectos de universidades como Stanford con el robot Stanley que fue el primer vehículo en recorrer 
-mas de 170 kilómetros en una carretera ripiada de manera completamente autónoma. 
+Posteriormente, el primer hito en el desarrollo de un sistema completamente autónomo vino 
+con la organización del DARPA “Grand Challenge” en el cual equipos de varias universidades, 
+institutos de investigación y empresas tuvieron que enfrentar el difícil reto de desarrollar 
+un sistema capaz de controlar un vehículo doméstico a través de una carretera 
+ripiada en medio del desierto de Arizona. Dentro las 2 versiones del Darpa Grand Challenge 
+destacaron los proyectos de universidades como Stanford con el robot Stanley \cite{Thrun2006} que fue el primer 
+vehículo en recorrer mas de 170 kilómetros en una carretera ripiada de manera completamente autónoma. 
+
+% IMAGEN: stanley de stanford
+
+%%%% Figura 1 %%%%%%
+\begin{figure}[!h] 
+\centering
+\includegraphics[width=0.5\textwidth]{stanley1}
+\caption{Stanley, el vehículo autónomo de Stanford que ganó la competencia DARPA Grand Challenge en 2005. 
+        Fuente: \href{http://stanford.edu/~cpiech/cs221/apps/driverlessCar.html}{stanford.edu} }
+\label{fig:stanley1}
+\end{figure}
 
 El éxito de los proyectos que participaron en el grand challenge sentó un gran precedente en el desarrollo de lo que 
-ahora se conoce como Self Driving Car. De hecho, muchos de los equipos participantes de este concurso se constituyen 
-ahora como existosas empresas de desarrollo o coadyuvan en iniciativas privadas de gigantes de la tecnología 
-como Google, Uber o Nissan.
+ahora se conoce como \textit{Self Driving Car} o vehículo autónomo. De hecho, muchos de los equipos 
+participantes de este concurso se constituyen en la actualidad como existosas empresas de desarrollo o 
+coadyuvan en iniciativas privadas de gigantes de la tecnología como Google, Uber o Nissan.
 
-La regulación define varios niveles de autonomía en vehículos terrestres, aéreos y acuáticos yendo desde un control 
-completamente manual, normalmente observado en vehículos completamente mecánicos, pasando por asistencias al control 
+Sin embargo, debido al creciente interés tanto en investigación como económico en los sistemas de conducción 
+autónoma, la Sociedad de Ingenieros en Automoción (SAE por sus siglas en inglés) ha elaborado un estándar donde se 
+detallan distintos aspectos concernientes. La regulación define varios niveles de autonomía en 
+vehículos terrestres, aéreos y acuáticos yendo desde un control completamente manual, 
+normalmente observado en vehículos completamente mecánicos, pasando por asistencias al control 
 hasta llegar a un vehículo completamente autónomo en todas sus tareas
 
-En la actualidad, existen varias iniciativas en el desarrollo de los self Driving Cars, siendo una de las más 
+% IMAGEN: niveles de autonomia
+%%%% Figura 2 %%%%%%
+\begin{figure}[!h] 
+\centering
+\includegraphics[width=0.70\textwidth]{levels}
+\caption{Niveles de automatización en la conducción según SAE. 
+        Fuente: \href{https://www.researchgate.net/figure/Terms-related-to-automated-driving-according-to-SAE-and-VDA_fig1_273883061}{researchgate} }
+\label{fig:levels}
+\end{figure}
+
+La creación de estándares y regulación ha tenido como consecuencia que, en la actualidad, existan varias iniciativas 
+en el desarrollo de los \textit{self Driving Cars}, siendo una de las más 
 importantes la empresa Waymo, dependiente de Google a través de su empresa Pública Alphabet. Waymo, ha aprovechado 
 el uso de tecnologías emergentes de sensado como el LIDAR para mejorar el mapeo y la navegación a través de algoritmos 
-de fusión de sensores.
+de fusión de sensores. Aparte de Alphabet, existen diversas iniciativas privadas en el desarrollo de vehículos autónomos 
+con fines comerciales como los Self Driving Cars de Uber, Toyota, BMW, Ford, entre otros.
 
-Una de las tareas más importantes dentro de un self driving car es la detección y mantención del carril del 
+% IMAGEN: vehiculo de waymo
+
+%%%% Figura 1 %%%%%%
+\begin{figure}[!h] 
+\centering
+\includegraphics[width=0.5\textwidth]{waymo}
+\caption{El vehículo autónomo de Waymo. 
+        \href{https://waymo.com/}{waymo.com}}
+\label{fig:waymo}
+\end{figure}
+
+Una de las tareas más importantes dentro de un \textit{self driving car} es la detección y mantención del carril del 
 vehículo. Fabricantes de vehículos automotores han incluido con éxito sistemas de asistencia al conductor para la 
 mantención del carril usando cámaras digitales y visión artificial para poder detectar la posición del automóvil con 
-respecto al carril. Estos sistemas se consideran fundamentales en sistemas de conducción autónoma.
+respecto al carril. Estos sistemas se consideran fundamentales en sistemas de conducción autónoma. Durante las últimas 
+dos décadas, se han desarrollado distintos tipos de sistemas y enfoques para resolver el problema de la mantención de 
+carril. En el presente proyecto, se explorará el problema desde un punto de vista de la tarea de aprendizaje supervisado
+usando un sistema de aprendizaje fin a fin.
 
-Entre las técnicas empleadas para lograr la tarea de detección y mantención del carril en una avenida o carretera 
-se pueden encontrar diversos enfoques entre los cuales podemos destacar los siguientes 2:
-
-\begin{itemize}
-    \item Fusión de sensores e ingeniería de ``características''
-    \item Aprendizaje ``Fin a Fin''
-\end{itemize}
+Los sistemas de aprendizaje fin a fin se han explorado de manera exitosa en los últimos años, esto debido a la creciente
+disponibilidad de sistemas de cómputo de alta concurrencia, en especial las Unidades de Procesamiento Gŕafico de propósito
+general o GPGPU por sus siglas en inglés. Esta disponibilidad ha logrado que se puedan entrenar redes neuronales completas 
+en una estación de trabajo que no consume demasiada energía. Una de las empresas pioneras en GPGPU es Nvidia con su herramienta 
+CUDA, que ha permitido el desarrollo de algoritmos de entrenamiento e inferencia para redes neuronales de manera sencilla. Es 
+precisamente Nvidia que ha demostrado que los sistemas de aprendizaje fin a fin pueden tener éxito con el desarrollo de un 
+prototipo y arquitectura de vehículo autónomo \cite{bojarski2016end}.
 %*******************JUSTIFICACION*******************
 
 \section{Justificación del Proyecto}
@@ -187,10 +226,17 @@ Desde el punto de vista académico, el proyecto se justifica en el entendido del
 de ingeniería para el análisis y diseño de un sistema de aprendizaje “fin a fin” usando redes neuronales. Tales 
 técnicas y procedimientos incluyen la definición de la arquitectura de la red neuronal, el entrenamiento y el análisis 
 del rendimiento de la misma. Así como también el dimensionamiento de los componentes de cómputo embebido para el 
-prototipo y la implementación de los sistemas de control de bajo nivel para el mismo. Tales técnicas y 
+prototipo y la implementación de los sistemas de control electrónico de bajo nivel para el mismo. Tales técnicas y 
 procedimientos se corresponden de manera integral con los conocimientos adquiridos a lo largo de la carrera 
 de Ingeniería Electrónica en sus distintas asignaturas.
 
+\subsection{Justificación social}
+
+En Bolivia existe más de un millón de automotores y la gran mayoría son de uso privado \cite{INE2018}. El parque automotor va 
+en crecimiento y junto con él temas de impacto ambiental que van en desmedro de la calidad de vida de la población 
+como por ejemplo: polución del aire, contaminación sonora o mal uso de espacios públicos. En este entendido, el 
+desarrollo de vehículos autónomos surge como una oportunidad para solucionar algunos de estos problemas y mejorar 
+la calidad de vida de la población.
 
 %******************ANALISIS DE LA PROBLEMATICA*********************
 %------ TODO: completar esta parte ------------- %
@@ -221,10 +267,7 @@ de un equipo de expertos que sea capaz de realizar las tareas de diseño de las 
 y el de la integración de los módulos en un solo sistema funcional. Este enfoque, pese a que ha demostrado ser 
 una forma efectiva de trabajo para diversos problemas, tiene la desventaja de requerir muchos 
 recursos y tiempo para poder lograr un sistema funcional. 
-
-
-%Descripcion de la labor de Desminado Humanitario
-
+%
 \subsection{Planteamiento del problema}
 % PLANTEAMIENTO DEL PROBLEMA: Tiene que ver con enfocar la solucion de los aspectos problematicos tratados, 
 % desde su situacion inicial hasta su situacion final deseada.
@@ -233,28 +276,45 @@ Considerando a la tarea de conducción autónoma como un sistema de procesamient
 cuenta varios aspectos concernientes tanto al diseño como a la implementación de dichos tipos de sistemas. Una 
 de las principales características es que tradicionalmente el flujo de la información pasa por varias etapas.
 
-En el área de visión por computadora para tareas de conducción autónoma, normalmente se sigue el siguiente flujo:
+En el área de visión por computadora para tareas de conducción autónoma, normalmente se sigue el siguiente flujo en el desarrollo 
+un sistema o prototipo:
 
 \begin{enumerate}
     \item \textbf{Extracción de características.} Esta etapa incluye el preprocesamiento y transformación de la imagen 
     en un conjunto de características de distinta índole. Estas características se suelen llamar también descriptores 
     y sirven para describir los aspectos más relevantes de la imagen para la tarea final, por ejemplo, la detección de bordes. 
     La extracción de características también se usa para reducir la dimensionalidad inicial de la imagen a una más tratable y 
-    amigable con el poder de procesamiento disponible. Las características o descriptores a usarse se definen manualmente por 
-    medio de conocimiento experto y se afinan de la misma manera.
+    amigable con la capacidad de procesamiento computacional disponible. Las características o descriptores a usarse 
+    se definen manualmente por medio de conocimiento experto y se afinan de la misma manera.
 
-    \item \textbf{Algoritmo predictor.} Esta etapa incluye típicamente un algoritmo de aprendizaje previamente entrenado con un conjunto 
-    de datos adecuado, permite realizar distintas tareas de alto nivel sobre los descriptores obtenidos de la imagen. Estas 
-    descripciones de alto nivel incluyen normalmente tareas de detección, clasificación o regresión.
+    \item \textbf{Algoritmo de predicción.} Esta etapa incluye típicamente un algoritmo de aprendizaje previamente 
+    entrenado con un conjunto de datos adecuado, permite realizar distintas tareas de alto nivel sobre los descriptores 
+    obtenidos de la imagen. Estas descripciones de alto nivel incluyen normalmente tareas de detección, 
+    clasificación o regresión. Los algoritmos de aprendizaje incluyen típicamente algoritmos básicos, tales como árboles de decisión,
+    regresión lineal o máquinas de soporte vectorial ya que deben realizar la tarea de predicción en un 
+    conjunto de dimensionalidad relativamente baja (los descriptores).
 
-    \item \textbf{Adecuación de los datos de salida.} La información extraída de la anterior etapa debe procesarse para poder ser traducida 
-    a comandos de control que actuen directamente con las etapas de bajo nivel del vehículo, es decir la etapa de actuación y potencia.
+    \item \textbf{Adecuación de los datos de salida.} La información extraída de la anterior etapa debe 
+    procesarse para poder ser traducida a comandos de control que actuen directamente con las etapas 
+    de bajo nivel del vehículo, es decir la etapa de actuación y potencia. En esta etapa se suele incluir algún algoritmo 
+    de control realimentado para el control de motores así como también algoritmos de fusión de distintas fuentes de información
+    para obtener finalmente una señal de comando para los actuadores.
 \end{enumerate}
 
+Como se ha podido observar, el flujo de trabajo en un sistema de conducción autónomo se compone de varias etapas 
+interdependientes que se deben realizar con conocimiento y experiencia específica en cada una de las mismas. 
 
-  - complejidad
-  - lentitud en la implementacion
-  - 
+Por su parte, otra de las dificultades con este acercamiento al reto de la conducción autónoma es el de la reducida
+flexibilidad del sistema. En otras palabras, si se quisiera modificar el sistema para agregar requerimientos o 
+expandir la funcionalidad del mismo, se debe realizar una modificación a la etapa específica y evaluar el impacto de 
+las modificaciones en todo el sistema en su conjunto. Esto dificulta de manera sustancial la reutilización de diversos
+componentes en sistemas similares.
+
+Finalmente, la exagerada complejidad y conocimientos requeridos para poder implementar un sistema experimental 
+de esta naturaleza hace prácticamente imposible su desarrollo por equipos de investigación pequeños o investigadores 
+individuales. Dada la importancia y la potencialidad de los sistemas de conducción autónoma es escencial reducir 
+esta dificultad de implementación y experimentación.
+
 %------------------
 \section{Objetivos}
 \subsection{Objetivo General}
@@ -324,46 +384,65 @@ continuación:
     \item La recolección de datos estará enfocada y definida por el prototipo
     a implementar.
 \end{itemize}
+
 \section{Solución Propuesta}
 
-La solución propuesta se compone de un sistema capaz 
-Una propuesta inicial del diseño de un esquema de control por módulos para un sistema multi-robot destinado 
-a labores de Desminado Humanitario se describe en las Figuras \ref{fig:esquema1} y \ref{fig:esquema2}, no obstante 
-la misma podría ser sujeta de modificaciones en función de aspectos relevantes que puedan surgir 
-en el desarrollo del trabajo...
+La propuesta del presente proyecto consta del desarrollo de un sistema de aprendizaje
+fin a fin para la conducción autónoma de vehículos automotores domésticos. En este
+sentido, se puede desglosar la arquitectura del sistema propuesto dividido en 
+distintos subsistemas funcionales.
+Por su parte, también es importante mencionar que el sistema en su conjunto contará 
+con tres subsistemas intedependientes: Subsistema de adquisición de datos y 
+entrenamiento, subsistema de inferencia y conducción autónoma, subsistema de control 
+y actuación.
 
-%%%% Figura 1 %%%%%%
-\begin{figure}[h!] 
-\centering
-\includegraphics[width=0.5\textwidth]{esquema1}
-\caption{La leyenda viene aca ...}
-\label{fig:esquema1}
-\end{figure}
+\subsection{Subsistema de adquisición de datos y entrenamiento.}
+Este subsistema se compone de un conjunto de herramientas y utilidades para la 
+adquisición de un nuevo conjunto de datos de entrenamiento y validación, así como
+también un módulo de entrenamiento de la red neuronal convolucional para la tarea de
+la generación de comandos de control.
 
+\subsection{Subsistema de inferencia y conducción autónoma.}
+El subsistema de inferencia y conducción autónoma tiene la tarea de obtener y ejecutar
+las predicciones de la red neuronal entrenada en el Sistema de Adquisición de Datos y Entrenamiento.
+Este subsistema tomará como entradas los datos de imágenes de una cámara y datos de 
+sensores a bordo del prototipo para generar comandos de control acordes con el entorno
+percibido. Este subsistema estará implementado en forma de un programa de ``piloto automático''
+capaz de conducir el prototipo de manera autónoma.
 
-%%%% Figura 2 %%%%%%
-\begin{figure}[h!] 
-\centering
-\includegraphics[width=0.5\textwidth]{esquema2}
-\caption{La leyenda viene aca ...}
-\label{fig:esquema2}
-\end{figure}
-
-
-
-
-
-
-
- 
- 
-
-
+\subsection{Subsistema de control y actuación.}
+Este subsistema compone la parte física de la propuesta. Contará con un modelo físico
+a escala con locomoción de Ackerman con actuadores para la tracción y la dirección. 
+Además, también contará con una plataforma electrónica embebida que se conectará 
+directamente a los actuadores a través de una etapa de potencia y a los sensores 
+correspondientes mediante un sistema de tiempo real. La parte lógica estará implementada
+en una computadora de abordo que servirá de puente entre el mundo físico y la parte 
+lógica de todo el sistema.
 
 
+
+% %%%% Figura 1 %%%%%%
+% \begin{figure}[!h] 
+% \centering
+% \includegraphics[width=0.5\textwidth]{esquema1}
+% \caption{La leyenda viene aca ...}
+% \label{fig:esquema1}
+% \end{figure}
+
+
+% %%%% Figura 2 %%%%%%
+% \begin{figure}[!h] 
+% \centering
+% \includegraphics[width=0.5\textwidth]{esquema2}
+% \caption{La leyenda viene aca ...}
+% \label{fig:esquema2}
+% \end{figure}
 
 \section{Temario del Proyecto}
-A continuación se presenta el temario tentativo de la memoria del proyecto, considerando los posibles contenidos, sin un detalle exhaustivo de los mismos puesto que podría ser una limitante en la estructura final. Inicialmente se considera la siguiente estructura:\\
+A continuación se presenta el temario tentativo de la memoria del proyecto, 
+considerando los posibles contenidos, sin un detalle exhaustivo de los mismos 
+puesto que podría ser una limitante en la estructura final. 
+Inicialmente se considera la siguiente estructura:\\
 
 \begin{itemize}
 
@@ -386,6 +465,7 @@ A continuación se presenta el temario tentativo de la memoria del proyecto, con
 \item \textbf{Capitulo 4: Análisis y discusión de resultados}
 
 \item \textbf{Capitulo 5: Conclusiones y recomendaciones}
+
 \item \textbf{Referencias y bibliografía}
 
 \item \textbf{Glosario de términos}
@@ -399,15 +479,8 @@ A continuación se presenta el temario tentativo de la memoria del proyecto, con
 
 Diagrama Gantt ...
 
-
-
-
 \section{Bibliografia}
 
-
-
-
-
-\bibliographystyle{apalike}
+\bibliographystyle{IEEEtran}
 \bibliography{referencias}
 \end{document}

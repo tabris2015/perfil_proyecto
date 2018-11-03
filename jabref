@@ -1,0 +1,36 @@
+% Encoding: UTF-8
+
+@Article{Thrun2006,
+  author    = {Sebastian Thrun and Mike Montemerlo and Hendrik Dahlkamp and David Stavens and Andrei Aron and James Diebel and Philip Fong and John Gale and Morgan Halpenny and Gabriel Hoffmann and Kenny Lau and Celia Oakley and Mark Palatucci and Vaughan Pratt and Pascal Stang and Sven Strohband and Cedric Dupont and Lars-Erik Jendrossek and Christian Koelen and Charles Markey and Carlo Rummel and Joe van Niekerk and Eric Jensen and Philippe Alessandrini and Gary Bradski and Bob Davies and Scott Ettinger and Adrian Kaehler and Ara Nefian and Pamela Mahoney},
+  title     = {Stanley: The robot that won the {DARPA} Grand Challenge},
+  journal   = {Journal of Field Robotics},
+  year      = {2006},
+  volume    = {23},
+  number    = {9},
+  pages     = {661--692},
+  doi       = {10.1002/rob.20147},
+  publisher = {Wiley},
+}
+
+@TechReport{lecun2004dave,
+  author      = {LeCun, Y and Cosatto, E and Ben, J and Muller, U and Flepp, B},
+  title       = {DAVE: Autonomous off-road vehicle control using end-to-end learning},
+  institution = {Technical Report DARPA-IPTO Final Report, Courant Institute/CBLL, http://www. cs. nyu. edu/yann/research/dave/index. html},
+  year        = {2004},
+}
+
+@Article{bojarski2016end,
+  author  = {Bojarski, Mariusz and Del Testa, Davide and Dworakowski, Daniel and Firner, Bernhard and Flepp, Beat and Goyal, Prasoon and Jackel, Lawrence D and Monfort, Mathew and Muller, Urs and Zhang, Jiakai and others},
+  title   = {End to end learning for self-driving cars},
+  journal = {arXiv preprint arXiv:1604.07316},
+  year    = {2016},
+}
+
+@TechReport{INE2018,
+  author      = {INE},
+  title       = {Actualidad Estadstica Parque Automotor Bolivia 2017},
+  institution = {Instituto Nacional de Estadistica},
+  year        = {2018},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
