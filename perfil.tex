@@ -52,7 +52,7 @@
 \vspace*{0.4in}
 
 \begin{normalsize}
-\textbf{`` Aprendizaje fin a fin para la conducción autónoma de vehículos domésticos usando visión artificial y redes neuronales convolucionales''} \\
+\textbf{``Aprendizaje fin a fin para la conducción autónoma de vehículos domésticos usando visión artificial y redes neuronales convolucionales''} \\
 \end{normalsize}
 
 
@@ -95,7 +95,7 @@ LA PAZ, AGOSTO 2018\\
 
 \section{Introducción}
 
-Los vehículos autónomos han pasadoe de ser un tema de ciencia ficción a convertirse una realidad cada vez más 
+Los vehículos autónomos han pasado de ser un tema de ciencia ficción a convertirse una realidad cada vez más 
 cercana. Si bien existe un recorrido muy largo para llegar a implementar sistemas completamente autónomos en las calles, 
 los recientes avances en la tecnología junto con el interés económico de grandes empresas y corporaciones en el mundo 
 ha hecho posible incluir diversos niveles de autonomía a vehículos con fines de uso doméstico e industrial con éxito.
@@ -119,9 +119,13 @@ El presente proyecto se centra en el desarrollo de un sistema de conducción aut
 la generación de comandos de control para la conducción autónoma de un vehículo doméstico con un modelo de locomoción 
 de Ackerman. Se intenta desarrollar un sistema de aprendizaje “fin a fin” que consta de un modelo de predicción 
 que genera comandos de control a partir de un estímulo visual proveniente de una cámara monocular.
+%% detallar un poco mas el reto del sistema fin a fin
+
+% definicion de sistemas fin a fin
 
 % TODO: referencias 
 \section{Antecedentes}
+
 
 El primer intento de desarrollo de un sistema de conducción autónomo “fin a fin” fue llevado a cabo por la Agencia 
 de Proyectos de Investigación Avanzada en Defensa de los Estados Unidos (DARPA) con un proyecto conocido 
@@ -130,6 +134,9 @@ tarea de conducir a través de un entorno escabroso. El vehículo DAVE fue entre
 horas de conducción humana en entornos similares pero no idénticos. Los datos de entrenamiento 
 incluyeron imágenes de dos cámaras de video y comandos de control generados por un operador humano. 
 
+Luego de este primer hito en la aplicación de sistemas fin a fin en tareas de conducción, 
+
+\subsection{Sistemas de Conducción Autónoma}
 Posteriormente, el primer hito en el desarrollo de un sistema completamente autónomo vino 
 con la organización del DARPA “Grand Challenge” en el cual equipos de varias universidades, 
 institutos de investigación y empresas tuvieron que enfrentar el difícil reto de desarrollar 
@@ -153,6 +160,22 @@ El éxito de los proyectos que participaron en el grand challenge sentó un gran
 ahora se conoce como \textit{Self Driving Car} o vehículo autónomo. De hecho, muchos de los equipos 
 participantes de este concurso se constituyen en la actualidad como existosas empresas de desarrollo o 
 coadyuvan en iniciativas privadas de gigantes de la tecnología como Google, Uber o Nissan.
+
+\subsubsection{Arquitectura general de un sistema de conducción autónoma}
+En general, la arquitectura de un sistema de conducción autónoma se puede entender como la integración de varios módulos o 
+subsistemas funcionales, tal como se puede observar en la figura \ref(arquitectura).
+
+
+% IMAGEN: arquitectura
+
+%%%% Figura 1 %%%%%%
+\begin{figure}[!h] 
+    \centering
+    \includegraphics[width=0.5\textwidth]{dibujos/overview}
+    \caption{Arquitectura de un sistema de conducción autónoma}
+    \label{fig:arquitectura}
+    \end{figure}
+
 
 Sin embargo, debido al creciente interés tanto en investigación como económico en los sistemas de conducción 
 autónoma, la Sociedad de Ingenieros en Automoción (SAE por sus siglas en inglés) ha elaborado un estándar donde se 
@@ -230,13 +253,13 @@ prototipo y la implementación de los sistemas de control electrónico de bajo n
 procedimientos se corresponden de manera integral con los conocimientos adquiridos a lo largo de la carrera 
 de Ingeniería Electrónica en sus distintas asignaturas.
 
-\subsection{Justificación social}
+% \subsection{Justificación social}
 
-En Bolivia existe más de un millón de automotores y la gran mayoría son de uso privado \cite{INE2018}. El parque automotor va 
-en crecimiento y junto con él temas de impacto ambiental que van en desmedro de la calidad de vida de la población 
-como por ejemplo: polución del aire, contaminación sonora o mal uso de espacios públicos. En este entendido, el 
-desarrollo de vehículos autónomos surge como una oportunidad para solucionar algunos de estos problemas y mejorar 
-la calidad de vida de la población.
+% En Bolivia existe más de un millón de automotores y la gran mayoría son de uso privado \cite{INE2018}. El parque automotor va 
+% en crecimiento y junto con él temas de impacto ambiental que van en desmedro de la calidad de vida de la población 
+% como por ejemplo: polución del aire, contaminación sonora o mal uso de espacios públicos. En este entendido, el 
+% desarrollo de vehículos autónomos surge como una oportunidad para solucionar algunos de estos problemas y mejorar 
+% la calidad de vida de la población.
 
 %******************ANALISIS DE LA PROBLEMATICA*********************
 %------ TODO: completar esta parte ------------- %
@@ -260,6 +283,8 @@ de procesamiento mediante el cual la información fluye y se transforma, cada un
 diseñada e implementada en base a conocimiento específico y con requerimientos y limitaciones específicas 
 de la tarea que realiza. 
 
+%  diagrama de sistema de conduccion autonoma completo
+
 Si bien el enfoque anteriormente mencionado ha logrado conseguir importantes avances y resultados 
 muy prometedores, involucra un gran esfuerzo a la hora de diseñar cada una de las etapas independientemente 
 para luego hacer que funcionen todas juntas y cumplan la tarea asignada. Este proceso usualmente requiere 
@@ -267,10 +292,15 @@ de un equipo de expertos que sea capaz de realizar las tareas de diseño de las 
 y el de la integración de los módulos en un solo sistema funcional. Este enfoque, pese a que ha demostrado ser 
 una forma efectiva de trabajo para diversos problemas, tiene la desventaja de requerir muchos 
 recursos y tiempo para poder lograr un sistema funcional. 
+
+
 %
 \subsection{Planteamiento del problema}
 % PLANTEAMIENTO DEL PROBLEMA: Tiene que ver con enfocar la solucion de los aspectos problematicos tratados, 
 % desde su situacion inicial hasta su situacion final deseada.
+
+% definir el concepto de informacion con referencia a datos
+% 
 
 Considerando a la tarea de conducción autónoma como un sistema de procesamiento de datos, se debe tener en 
 cuenta varios aspectos concernientes tanto al diseño como a la implementación de dichos tipos de sistemas. Una 
