@@ -55,10 +55,7 @@
 \textbf{``Aprendizaje fin a fin para la conducción autónoma de vehículos domésticos usando visión artificial y redes neuronales convolucionales''} \\
 \end{normalsize}
 
-
-
 \vspace*{0.2in}
-
 
 \begin{large}
 \textbf{POSTULANTE:} JOSE EDUARDO LARUTA ESPEJO\\
@@ -73,8 +70,6 @@
 \end{large}
 
 \vspace*{0.2in}
-
-
 
 \begin{normalsize}
 LA PAZ, AGOSTO 2018\\
@@ -134,10 +129,17 @@ tarea de conducir a través de un entorno escabroso. El vehículo DAVE fue entre
 horas de conducción humana en entornos similares pero no idénticos. Los datos de entrenamiento 
 incluyeron imágenes de dos cámaras de video y comandos de control generados por un operador humano. 
 
-Luego de este primer hito en la aplicación de sistemas fin a fin en tareas de conducción, 
+Paralelamente a este esfuerzo realizado por el DARPA y debido a la limitada capacidad computacional de la época, 
+los avances en las distintas tareas que componen la conducción autónoma se han enfocado en el tratamiento de las señales 
+y datos provenientes de los sensores con algoritmos de procesamiento básicos llegando a crearse implementaciones efectivas 
+basadas en un flujo de trabajo descrito a continuación.
 
 \subsection{Sistemas de Conducción Autónoma}
-Posteriormente, el primer hito en el desarrollo de un sistema completamente autónomo vino 
+Un sistema de conducción autónoma es una combinación de varios componentes o subsistemas donde las tareas 
+de percepción, toma de decisiones y operación de un vehículo son desarrolladas por un sistema electrónico en lugar
+de un conductor humano. 
+
+El primer hito en el desarrollo de un sistema completamente autónomo vino 
 con la organización del DARPA “Grand Challenge” en el cual equipos de varias universidades, 
 institutos de investigación y empresas tuvieron que enfrentar el difícil reto de desarrollar 
 un sistema capaz de controlar un vehículo doméstico a través de una carretera 
@@ -163,8 +165,21 @@ coadyuvan en iniciativas privadas de gigantes de la tecnología como Google, Ube
 
 \subsubsection{Arquitectura general de un sistema de conducción autónoma}
 En general, la arquitectura de un sistema de conducción autónoma se puede entender como la integración de varios módulos o 
-subsistemas funcionales, tal como se puede observar en la figura \ref(arquitectura).
+subsistemas funcionales que operan en coordinación tal como se puede observar en la figura \ref(esquema). 
 
+% IMAGEN: arquitectura
+
+%%%% Figura 1 %%%%%%
+\begin{figure}[!h] 
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/graficos/esquema}
+    \caption{Arquitectura de un sistema de conducción autónoma. Fuente: Elaboración propia.}
+    \label{fig:esquema}
+    \end{figure}
+
+
+Normalmente, este tipo de sistemas cuenta con una etapa de adquisición de datos y entrenamiento que servirá para alimentar una base de 
+conocimiento o reglas en las que se basará el módulo de inferencia y control autónomo.
 
 % IMAGEN: arquitectura
 
@@ -232,11 +247,12 @@ prototipo y arquitectura de vehículo autónomo \cite{bojarski2016end}.
 \section{Justificación del Proyecto}
 
 \subsection{Justificación técnica}
+
 El proyecto se justifica desde el punto de vista técnico a partir de las técnicas y procedimientos explorados 
 en el mismo para implementar un sistema de visión y control asistido basado en una red neuronal convolucional. 
 Usualmente, el análisis de la aplicabilidad de una red neuronal involucra solamente la prueba sobre un dataset 
-genérico donde se evalúa su rendimiento analizando el error de clasificación y pérdidas. En este caso, se plantea el 
-flujo de trabajo completo orientado a la implementación en un prototipo a escala usando técnicas convencionales en 
+genérico donde se evalúa su rendimiento analizando el error de clasificación y pérdidas. En este proyecto, se plantea el 
+flujo de trabajo completo orientado a la implementación en un prototipo funcional usando técnicas convencionales en 
 el análisis y diseño de sistemas de visión artificial así como también la implementación del mencionado sistema en 
 una plataforma de cómputo embebida.
 
