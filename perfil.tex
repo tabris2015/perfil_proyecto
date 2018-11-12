@@ -163,34 +163,6 @@ ahora se conoce como \textit{Self Driving Car} o vehículo autónomo. De hecho, 
 participantes de este concurso se constituyen en la actualidad como existosas empresas de desarrollo o 
 coadyuvan en iniciativas privadas de gigantes de la tecnología como Google, Uber o Nissan.
 
-\subsubsection{Arquitectura general de un sistema de conducción autónoma}
-En general, la arquitectura de un sistema de conducción autónoma se puede entender como la integración de varios módulos o 
-subsistemas funcionales que operan en coordinación tal como se puede observar en la figura \ref(esquema). 
-
-% IMAGEN: arquitectura
-
-%%%% Figura 1 %%%%%%
-\begin{figure}[!h] 
-    \centering
-    \includegraphics[width=0.5\textwidth]{img/graficos/esquema}
-    \caption{Arquitectura de un sistema de conducción autónoma. Fuente: Elaboración propia.}
-    \label{fig:esquema}
-    \end{figure}
-
-
-Normalmente, este tipo de sistemas cuenta con una etapa de adquisición de datos y entrenamiento que servirá para alimentar una base de 
-conocimiento o reglas en las que se basará el módulo de inferencia y control autónomo.
-
-% IMAGEN: arquitectura
-
-%%%% Figura 1 %%%%%%
-\begin{figure}[!h] 
-    \centering
-    \includegraphics[width=0.5\textwidth]{dibujos/overview}
-    \caption{Arquitectura de un sistema de conducción autónoma}
-    \label{fig:arquitectura}
-    \end{figure}
-
 
 Sin embargo, debido al creciente interés tanto en investigación como económico en los sistemas de conducción 
 autónoma, la Sociedad de Ingenieros en Automoción (SAE por sus siglas en inglés) ha elaborado un estándar donde se 
@@ -232,7 +204,45 @@ vehículo. Fabricantes de vehículos automotores han incluido con éxito sistema
 mantención del carril usando cámaras digitales y visión artificial para poder detectar la posición del automóvil con 
 respecto al carril. Estos sistemas se consideran fundamentales en sistemas de conducción autónoma. Durante las últimas 
 dos décadas, se han desarrollado distintos tipos de sistemas y enfoques para resolver el problema de la mantención de 
-carril. En el presente proyecto, se explorará el problema desde un punto de vista de la tarea de aprendizaje supervisado
+carril.
+
+\subsubsection{Arquitectura general de un sistema de conducción autónoma}
+En general, la arquitectura de un sistema de conducción autónoma se puede entender como la integración de varios módulos o 
+subsistemas funcionales que operan en coordinación tal como se puede observar en la figura \ref(esquema). 
+
+% IMAGEN: arquitectura
+
+%%%% Figura 1 %%%%%%
+\begin{figure}[!h] 
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/graficos/esquema}
+    \caption{Arquitectura de un sistema de conducción autónoma. Fuente: Elaboración propia.}
+    \label{fig:esquema}
+    \end{figure}
+
+
+Normalmente, este tipo de sistemas cuenta con una etapa de adquisición de datos y entrenamiento que servirá para alimentar una base de 
+conocimiento o reglas en las que se basará el módulo de inferencia y control autónomo. Asimismo, tanto el subsistema de adquisición de datos 
+y entrenamiento como el subsistema de inferencia y control autónomo interactuan directamente con el subsistema de control y actuación 
+del vehículo. 
+
+Los mayores esfuerzos se han enfocado principalmente al desarrollo del subsistema de inferencia y control autónomo ya que es el que 
+define el rendimiento de un sistema de conducción autónoma en sí. Este subsistema, a su vez, puede ser analizado como un conjunto de 
+varios módulos que interactúan entre sí de manera secuencial, como se puede apreciar en la figura \ref{inferencia}. 
+
+% IMAGEN: arquitectura
+
+%%%% Figura 1 %%%%%%
+\begin{figure}[!h] 
+    \centering
+    \includegraphics[width=0.5\textwidth]{dibujos/overview}
+    \caption{Arquitectura de un sistema de conducción autónoma}
+    \label{fig:arquitectura}
+    \end{figure}
+
+
+
+En el presente proyecto, se explorará el problema desde un punto de vista de la tarea de aprendizaje supervisado
 usando un sistema de aprendizaje fin a fin.
 
 Los sistemas de aprendizaje fin a fin se han explorado de manera exitosa en los últimos años, esto debido a la creciente
