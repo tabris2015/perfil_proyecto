@@ -121,7 +121,6 @@ que genera comandos de control a partir de un estímulo visual proveniente de un
 % TODO: referencias 
 \section{Antecedentes}
 
-
 El primer intento de desarrollo de un sistema de conducción autónomo “fin a fin” fue llevado a cabo por la Agencia 
 de Proyectos de Investigación Avanzada en Defensa de los Estados Unidos (DARPA) con un proyecto conocido 
 como el Vehículo Autónomo de DARPA o DAVE \cite{lecun2004dave} en el cual un vehículo radio controlado a escala tenía la 
@@ -162,7 +161,6 @@ El éxito de los proyectos que participaron en el grand challenge sentó un gran
 ahora se conoce como \textit{Self Driving Car} o vehículo autónomo. De hecho, muchos de los equipos 
 participantes de este concurso se constituyen en la actualidad como existosas empresas de desarrollo o 
 coadyuvan en iniciativas privadas de gigantes de la tecnología como Google, Uber o Nissan.
-
 
 Sin embargo, debido al creciente interés tanto en investigación como económico en los sistemas de conducción 
 autónoma, la Sociedad de Ingenieros en Automoción (SAE por sus siglas en inglés) ha elaborado un estándar donde se 
@@ -208,42 +206,41 @@ carril.
 
 \subsubsection{Arquitectura general de un sistema de conducción autónoma}
 En general, la arquitectura de un sistema de conducción autónoma se puede entender como la integración de varios módulos o 
-subsistemas funcionales que operan en coordinación tal como se puede observar en la figura \ref(esquema). 
+subsistemas funcionales que operan en coordinación tal como se puede observar en la figura \ref{fig:esquema}. 
 
 % IMAGEN: arquitectura
 
 %%%% Figura 1 %%%%%%
 \begin{figure}[!h] 
     \centering
-    \includegraphics[width=0.5\textwidth]{img/graficos/esquema}
+    \includegraphics[width=0.75\textwidth]{img/esquema}
     \caption{Arquitectura de un sistema de conducción autónoma. Fuente: Elaboración propia.}
     \label{fig:esquema}
     \end{figure}
 
 
-Normalmente, este tipo de sistemas cuenta con una etapa de adquisición de datos y entrenamiento que servirá para alimentar una base de 
-conocimiento o reglas en las que se basará el módulo de inferencia y control autónomo. Asimismo, tanto el subsistema de adquisición de datos 
-y entrenamiento como el subsistema de inferencia y control autónomo interactuan directamente con el subsistema de control y actuación 
-del vehículo. 
+Normalmente, este tipo de sistemas cuenta con una etapa de adquisición de datos y entrenamiento que servirá para 
+alimentar una base de conocimiento o reglas en las que se basará el módulo de inferencia y control autónomo. 
+Asimismo, tanto el subsistema de adquisición de datos y entrenamiento como el subsistema de inferencia y 
+control autónomo interactuan directamente con el subsistema de control y actuación del vehículo. 
 
-Los mayores esfuerzos se han enfocado principalmente al desarrollo del subsistema de inferencia y control autónomo ya que es el que 
-define el rendimiento de un sistema de conducción autónoma en sí. Este subsistema, a su vez, puede ser analizado como un conjunto de 
-varios módulos que interactúan entre sí de manera secuencial, como se puede apreciar en la figura \ref{inferencia}. 
-
-% IMAGEN: arquitectura
-
-%%%% Figura 1 %%%%%%
-\begin{figure}[!h] 
-    \centering
-    \includegraphics[width=0.5\textwidth]{dibujos/overview}
-    \caption{Arquitectura de un sistema de conducción autónoma}
-    \label{fig:arquitectura}
-    \end{figure}
+Los mayores esfuerzos se han enfocado principalmente al desarrollo del subsistema de inferencia y 
+control autónomo ya que es el que define el rendimiento de un sistema de conducción autónoma en sí. 
+Este subsistema, a su vez, puede ser analizado como un conjunto de varios módulos que interactúan 
+entre sí de manera secuencial, como se puede apreciar en la figura \ref{fig:inferencia}. 
 
 
 
-En el presente proyecto, se explorará el problema desde un punto de vista de la tarea de aprendizaje supervisado
-usando un sistema de aprendizaje fin a fin.
+\subsubsection{Sistemas de aprendizaje fin a fin}
+Tradicionalmente, los sistemas de aprendizaje requieren de múltiples etapas de procesamiento que interactuan entre sí, como se 
+muestra en la Figura(\ref{fig:inferencia}). Por su parte, los sistemas de aprendizaje fin a fin intentan condensar 
+estas etapas de procesamiento y reemplazarlas usualmente con una sola red neuronal. Estos sistemas han demostrado ser 
+altamente efectivos en contraste a los enfoques tradicionales, principalmente porque abstrae y resumen el diseño de las 
+etapas intermedias de un sistema de aprendizaje tradicional con una sola etapa. La desventaja de los 
+sistemas de aprendizaje fin a fin radica en la necesidad de grandes cantidades de datos de entrenamiento 
+en comparación con los enfoques tradicionales, sin embargo, gracias a la gran disponibilidad de datos de entrenamiento y 
+la accesibilidad de instrumentos y herramientas de adquisición de datos, esta desventaja no representa una dificultad de 
+gran magnitud en el desarrollo de sistemas fin a fin. 
 
 Los sistemas de aprendizaje fin a fin se han explorado de manera exitosa en los últimos años, esto debido a la creciente
 disponibilidad de sistemas de cómputo de alta concurrencia, en especial las Unidades de Procesamiento Gŕafico de propósito
@@ -252,40 +249,45 @@ en una estación de trabajo que no consume demasiada energía. Una de las empres
 CUDA, que ha permitido el desarrollo de algoritmos de entrenamiento e inferencia para redes neuronales de manera sencilla. Es 
 precisamente Nvidia que ha demostrado que los sistemas de aprendizaje fin a fin pueden tener éxito con el desarrollo de un 
 prototipo y arquitectura de vehículo autónomo \cite{bojarski2016end}.
+
+
 %*******************JUSTIFICACION*******************
 
 \section{Justificación del Proyecto}
 
-\subsection{Justificación técnica}
-
-El proyecto se justifica desde el punto de vista técnico a partir de las técnicas y procedimientos explorados 
-en el mismo para implementar un sistema de visión y control asistido basado en una red neuronal convolucional. 
-Usualmente, el análisis de la aplicabilidad de una red neuronal involucra solamente la prueba sobre un dataset 
-genérico donde se evalúa su rendimiento analizando el error de clasificación y pérdidas. En este proyecto, se plantea el 
-flujo de trabajo completo orientado a la implementación en un prototipo funcional usando técnicas convencionales en 
-el análisis y diseño de sistemas de visión artificial así como también la implementación del mencionado sistema en 
-una plataforma de cómputo embebida.
-
-Las tecnologías a ser usadas deberán tener la característica de pertenecer a los estándares actuales en la 
-investigación e industria, esto con el fin de ser replicable y extensible en futuros proyectos.
-
 \subsection{Justificación académica}
 
 Desde el punto de vista académico, el proyecto se justifica en el entendido del uso de técnicas y procedimientos 
-de ingeniería para el análisis y diseño de un sistema de aprendizaje “fin a fin” usando redes neuronales. Tales 
-técnicas y procedimientos incluyen la definición de la arquitectura de la red neuronal, el entrenamiento y el análisis 
-del rendimiento de la misma. Así como también el dimensionamiento de los componentes de cómputo embebido para el 
-prototipo y la implementación de los sistemas de control electrónico de bajo nivel para el mismo. Tales técnicas y 
+de ingeniería para el análisis y diseño de un sistema de aprendizaje “fin a fin” usando redes neuronales y una plataforma 
+para el entrenamiento y despliegue del mismo. Tales técnicas y procedimientos incluyen la definición de 
+la arquitectura de la red neuronal, el entrenamiento y el análisis del rendimiento de la misma. Así como 
+también el dimensionamiento de los componentes de cómputo embebido para el prototipo y la implementación de 
+los sistemas de control electrónico de bajo nivel para el mismo. Tales técnicas y 
 procedimientos se corresponden de manera integral con los conocimientos adquiridos a lo largo de la carrera 
 de Ingeniería Electrónica en sus distintas asignaturas.
 
-% \subsection{Justificación social}
+\subsection{Justificación tecnológica}
 
-% En Bolivia existe más de un millón de automotores y la gran mayoría son de uso privado \cite{INE2018}. El parque automotor va 
-% en crecimiento y junto con él temas de impacto ambiental que van en desmedro de la calidad de vida de la población 
-% como por ejemplo: polución del aire, contaminación sonora o mal uso de espacios públicos. En este entendido, el 
-% desarrollo de vehículos autónomos surge como una oportunidad para solucionar algunos de estos problemas y mejorar 
-% la calidad de vida de la población.
+Dada la creciente relevancia de los sistemas autónomos en la actualidad, el proyecto se justifica 
+desde el punto de vista tecnológico dado que se presenta la aplicación de nuevas
+herramientas y plataformas de software para el desarrollo de sistemas de autónomos, visión por computador 
+y redes neuronales convolucionales, que representan áreas vigentes en la investigación tecnológica hoy en día.
+
+El sistema desarrollado se constituirá a su vez en una plataforma de desarrollo sobre el cual se podrá 
+extender su funcionalidad y mejorar sus resultados usando herramientas de software de fácil acceso y aprendizaje 
+presentando la posibilidad de continuar y extender la investigación en sistemas de conducción autónoma, robótica móvil, 
+visión por computador y aprendizaje profundo.
+
+\subsection{Justificación técnica}
+
+Desde el punto de vista de las técnicas aplicadas, el proyecto se justifica dado que se pretende presentar una técnica 
+alternativa al enfoque tradicional en el desarrollo de sistemas de aprendizaje, presentando el desarrollo de un sistema 
+de aprendizaje fin a fin, que facilitará su análisis, diseño, entrenamiento y puesta en marcha en futuros proyectos 
+de investigación y aplicaciones en distintas áreas de la ingeniería. 
+
+La propuesta de la nueva técnica de aprendizaje fin a fin representa un avance en relación al desarrollo de sistemas 
+tradicionales por su impacto en el requerimiento de recursos y de conocimiento específico requerido.
+
 
 %******************ANALISIS DE LA PROBLEMATICA*********************
 %------ TODO: completar esta parte ------------- %
@@ -297,7 +299,7 @@ planteamiento del problema}
 % ****Es el analisis de las cuestiones discutibles que requieren de una solucion en el PG.
 
 Se han estudiado diferentes enfoques para lograr solucionar la tarea de 
-conducción autónoma para vehículos domésticos. Normalmente, la salida del 
+conducción autónoma para vehículos domésticos usando sistemas de aprendizaje. Normalmente, la salida del 
 sistema se expresa como una serie de comandos de control de aceleración y dirección 
 del volante del vehículo. Estos comandos se pueden obtener de diversas maneras dependiendo 
 el nivel de robustez y abstracción que el sistema requiere. Muchos sistemas 
@@ -307,9 +309,7 @@ es procesada y fusionada mediante distintos algoritmos de filtrado tales como el
 La característica de este tipo de sistema es que se puede expresar como una serie de etapas 
 de procesamiento mediante el cual la información fluye y se transforma, cada una de las etapas es 
 diseñada e implementada en base a conocimiento específico y con requerimientos y limitaciones específicas 
-de la tarea que realiza. 
-
-%  diagrama de sistema de conduccion autonoma completo
+de la tarea que realiza tal como se puede apreciar en la Figura(\ref{fig:inferencia}).
 
 Si bien el enfoque anteriormente mencionado ha logrado conseguir importantes avances y resultados 
 muy prometedores, involucra un gran esfuerzo a la hora de diseñar cada una de las etapas independientemente 
@@ -319,7 +319,6 @@ y el de la integración de los módulos en un solo sistema funcional. Este enfoq
 una forma efectiva de trabajo para diversos problemas, tiene la desventaja de requerir muchos 
 recursos y tiempo para poder lograr un sistema funcional. 
 
-
 %
 \subsection{Planteamiento del problema}
 % PLANTEAMIENTO DEL PROBLEMA: Tiene que ver con enfocar la solucion de los aspectos problematicos tratados, 
@@ -327,13 +326,22 @@ recursos y tiempo para poder lograr un sistema funcional.
 
 % definir el concepto de informacion con referencia a datos
 % 
+De acuerdo a lo establecido anteriormente, se puede considerar a la etapa de inferencia y control autónomo de 
+un sistema de conducción autónoma como un sistema de procesamiento de información que consta de varias etapas 
+secuenciales que transforman la información de acuerdo a parámetros previamente establecidos. Se debe tener en 
+cuenta varios aspectos concernientes tanto al diseño como a la implementación de dichos tipos de sistemas. 
 
-Considerando a la tarea de conducción autónoma como un sistema de procesamiento de datos, se debe tener en 
-cuenta varios aspectos concernientes tanto al diseño como a la implementación de dichos tipos de sistemas. Una 
-de las principales características es que tradicionalmente el flujo de la información pasa por varias etapas.
+%%%% Figura 1 %%%%%%
+\begin{figure}[!h] 
+    \centering
+    \includegraphics[width=0.75\textwidth]{img/inferencia}
+    \caption{Componentes del subsistema de inferencia y control autónomo. Fuente: Elaboración propia.}
+    \label{fig:inferencia}
+\end{figure}
 
-En el área de visión por computadora para tareas de conducción autónoma, normalmente se sigue el siguiente flujo en el desarrollo 
-un sistema o prototipo:
+
+En el área de visión por computadora para tareas de conducción autónoma, normalmente se sigue el siguiente 
+flujo en el desarrollo un sistema o prototipo:
 
 \begin{enumerate}
     \item \textbf{Extracción de características.} Esta etapa incluye el preprocesamiento y transformación de la imagen 
@@ -358,9 +366,9 @@ un sistema o prototipo:
 \end{enumerate}
 
 Como se ha podido observar, el flujo de trabajo en un sistema de conducción autónomo se compone de varias etapas 
-interdependientes que se deben realizar con conocimiento y experiencia específica en cada una de las mismas. 
+secuenciales que se deben realizar con conocimiento y experiencia específica en cada una de las mismas. 
 
-Por su parte, otra de las dificultades con este acercamiento al reto de la conducción autónoma es el de la reducida
+Por su parte, otra de las dificultades con este acercamiento, al reto de la conducción autónoma es el de la reducida
 flexibilidad del sistema. En otras palabras, si se quisiera modificar el sistema para agregar requerimientos o 
 expandir la funcionalidad del mismo, se debe realizar una modificación a la etapa específica y evaluar el impacto de 
 las modificaciones en todo el sistema en su conjunto. Esto dificulta de manera sustancial la reutilización de diversos
@@ -371,74 +379,70 @@ de esta naturaleza hace prácticamente imposible su desarrollo por equipos de in
 individuales. Dada la importancia y la potencialidad de los sistemas de conducción autónoma es escencial reducir 
 esta dificultad de implementación y experimentación.
 
+En conclusión, el desarrollo de un sistema de conducción autónoma presenta tres principales dificultades a la hora de 
+ser abordado: 
+\begin{enumerate}
+    \item Conocimiento experto de cada una de las etapas involucradas en el sistema.
+    \item Poca flexibilidad en el diseño y la implementación del sistema una vez establecido y probado.
+    \item El tiempo y recursos necesarios para poder diseñar e implementar un sistema de tal naturaleza lo hace privativo para equipos de investigación pequeños o con poco presupuesto.
+\end{enumerate}
 %------------------
 \section{Objetivos}
 \subsection{Objetivo General}
 
-Diseñar un sistema de aprendizaje “fin a fin” para la generación de comandos de 
-dirección en la tarea de conducción autónoma de vehículos domésticos basado en 
-visión artificial y redes neuronales convolucionales.
+Diseñar un sistema de aprendizaje “fin a fin” capaz de generar de comandos de 
+control de vehículos domésticos basado en visión artificial y redes neuronales 
+convolucionales para facilitar el diseño e implementación de sistemas de conducción autónoma.
 
 \subsection{Objetivos Específicos}
 Para alcanzar el objetivo general será necesario:
 
+
 \begin{itemize}
-    \item Investigar y evaluar requerimientos específicos para el sistema.
-    \item Diseñar una plataforma de prueba en hardware con características similares a las de un vehículo doméstico real.
-    \item Diseñar la arquitectura de una red neuronal capaz de cumplir con la tarea de generación de comandos 
-    de control para un vehículo autónomo.
-    \item Realizar pruebas de rendimiento y análisis comparativos en base al sistema implementado.
-    \item Proponer un prototipo funcional en el que se pueda apreciar los alcances del sistema.
+
+    \item Estudiar los aspectos concernientes al desarrollo de sistemas de conducción autónoma y sistemas de aprendizaje.
+    \item Analizar los requerimientos de un sistema de conducción autónoma capaz identificar y mantener su carril mientras se conduce.
+    \item Diseñar la arquitectura de un sistema de conducción autónoma en base a los requerimientos previamente establecidos.
+    \item Diseñar el subsistema de adquisición de datos y entrenamiento para tareas de conducción autónoma.
+    \item Diseñar el subsistema de control y actuación para la conducción autónoma de un vehículo con características similares a las de un vehículo doméstico real.
+    \item Diseñar el subsistema de inferencia y control autónomo basado en el uso de redes neuronales convolucionales.
+    \item Analizar los resultados del entrenamiento e implementación del subsistema de inferencia y control autónomo.
+    \item Realizar pruebas de rendimiento y análisis comparativos en el sistema implementado.
+
 \end{itemize}
 
 
 \section{Alcance}
 
-Dentro de los alcances del proyecto se puedencitar los siguientes
-aspectos:
+El presente proyecto de grado cubre los siguientes aspectos dentro de su alcance:
 
 \begin{itemize}
-    \item Recopilación de información de distintas fuentes en 
-    en trabajos de investigación.
-    \item El desarrollo de un prototipo funcional a escala con 
-    locomoción de Ackerman.
-    \item El diseño electrónico del circuito de control y comunicación de
-    la Computadora de Abordo.
+    \item El enfoque del estudio de sistemas de conducción autónomos de vehículos terrestres con el modelo de Ackermann.
     \item Investigación de arquitecturas y plataformas de software para el
     diseño y despliegue de robots móviles y tareas de conducción autónoma.
-    \item El diseño de la arquitectura de la red neuronal en base a 
-    especificaciones de funcionamiento, desempeño y plataforma de hardware.
-    \item Uso de algoritmos de preprocesamiento de datos y funciones
-    de agregación de datos previos al entrenamiento de la red neuronal.
-    \item El entrenamiento de la red neuronal en un entorno externo a la OBC.
-    \item El análisis de los errores de entrenamiento y validación de la red neuronal.
-
+    \item El desarrollo del sistema se contempla en el marco de un proyecto académico 
+    y, por tanto, será implementado usando herramientas de software comúnmente utilizadas en 
+    investigación de sistemas autónomos.
 \end{itemize}
+
+El alcance detallado previamente estará acotado a su vez por una serie de supuestos.
 
 \section{Límites}
 El sistema, por su parte, contará con ciertas restricciones detalladas a 
 continuación:
 \begin{itemize}
-    \item En la recopilación de información y fuentes se 
-    considerará principalmente investigaciones y trabajos relacionados
-    con tareas de aprendizaje "fin a fin" y redes neuronales convolucionales.
+    \item La tarea de conducción autónoma estará enfocada exclusivamente al 
+    seguimiento y mantención del carril basado en imágenes provenientes de una cámara 
+    sin considerar el reconocimiento e interpretación de otro tipo de información como 
+    señales de tránsito, cruces e intersecciones o la presencia de peatones, ciclistas, 
+    animales y otros objetos en la ruta.
     \item El prototipo a escala servirá solamente para un análisis superficial 
     de la dinámica de un vehículo automotor doméstico tomando como punto 
     de inicio modelos matemáticos simplificados y limitaciones de rangos de trabajo dentro 
     de dichos modelos.
-    \item la electrónica de los sistemas de control y percepción estará 
-    diseñada específicamente para el modelo a escala y las limitaciones anteriormente
-    mencionadas.
-    \item Se explorarán exclusivamente plataformas, librerías y herramientas
-    de cógo abierto y con licencias de uso no privativas.
     \item El diseño de la arquitectura de la red neuronal estará orientado a 
-    tareas de aprendizaje supervisado y aproximación de funciones.
-    \item tanto la arquitectura de la red como los hiperparámetros de 
-    la misma estarán acotados considerando las limitaciones de memoria y capacidad 
-    de procesamiento ofrecidos por la plataforma de cómputo o Computadora
-    de Abordo disponible.
-    \item La recolección de datos estará enfocada y definida por el prototipo
-    a implementar.
+    tareas de aprendizaje supervisado y aproximación de funciones y limitado por la capacidad de 
+    procesamiento disponible en el momento de la realización del presente proyecto.
 \end{itemize}
 
 \section{Solución Propuesta}
@@ -447,10 +451,18 @@ La propuesta del presente proyecto consta del desarrollo de un sistema de aprend
 fin a fin para la conducción autónoma de vehículos automotores domésticos. En este
 sentido, se puede desglosar la arquitectura del sistema propuesto dividido en 
 distintos subsistemas funcionales.
+
 Por su parte, también es importante mencionar que el sistema en su conjunto contará 
-con tres subsistemas intedependientes: Subsistema de adquisición de datos y 
+con tres subsistemas que podrán interactuar entre sí: Subsistema de adquisición de datos y 
 entrenamiento, subsistema de inferencia y conducción autónoma, subsistema de control 
-y actuación.
+y actuación como se puede apreciar en la Figura(\ref{fig:nuevo_esquema}).
+
+\begin{figure}[!h] 
+    \centering
+    \includegraphics[width=0.75\textwidth]{img/nuevo_esquema}
+    \caption{Arquitectura del sistema de conducción autónoma propuesto. Fuente: Elaboración propia.}
+    \label{fig:nuevo_esquema}
+\end{figure}
 
 \subsection{Subsistema de adquisición de datos y entrenamiento.}
 Este subsistema se compone de un conjunto de herramientas y utilidades para la 
@@ -466,33 +478,22 @@ sensores a bordo del prototipo para generar comandos de control acordes con el e
 percibido. Este subsistema estará implementado en forma de un programa de ``piloto automático''
 capaz de conducir el prototipo de manera autónoma.
 
+\begin{figure}[!h] 
+    \centering
+    \includegraphics[width=0.75\textwidth]{img/nueva_inferencia}
+    \caption{Subsistema de inferencia y control autónomo propuesto usando una red neuronal convolucional. Fuente: Elaboración propia.}
+    \label{fig:nueva_inferencia}
+\end{figure}
+
+
 \subsection{Subsistema de control y actuación.}
 Este subsistema compone la parte física de la propuesta. Contará con un modelo físico
-a escala con locomoción de Ackerman con actuadores para la tracción y la dirección. 
+a escala con locomoción de Ackermann con actuadores para la tracción y la dirección. 
 Además, también contará con una plataforma electrónica embebida que se conectará 
 directamente a los actuadores a través de una etapa de potencia y a los sensores 
 correspondientes mediante un sistema de tiempo real. La parte lógica estará implementada
 en una computadora de abordo que servirá de puente entre el mundo físico y la parte 
 lógica de todo el sistema.
-
-
-
-% %%%% Figura 1 %%%%%%
-% \begin{figure}[!h] 
-% \centering
-% \includegraphics[width=0.5\textwidth]{esquema1}
-% \caption{La leyenda viene aca ...}
-% \label{fig:esquema1}
-% \end{figure}
-
-
-% %%%% Figura 2 %%%%%%
-% \begin{figure}[!h] 
-% \centering
-% \includegraphics[width=0.5\textwidth]{esquema2}
-% \caption{La leyenda viene aca ...}
-% \label{fig:esquema2}
-% \end{figure}ch
 
 \section{Temario del Proyecto}
 A continuación se presenta el temario tentativo de la memoria del proyecto, 
